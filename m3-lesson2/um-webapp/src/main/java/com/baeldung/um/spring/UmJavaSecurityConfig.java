@@ -35,10 +35,16 @@ public class UmJavaSecurityConfig extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http.
         authorizeRequests().
-        // antMatchers("/api/**").      // if you want a more explicit mapping here
-        // regexMatchers("^/login.*").  // use regular expression to match request path
-        anyRequest().
-        authenticated().
+        //antMatchers("/api/**").      // if you want a more explicit mapping here
+        regexMatchers("^/login.*").  // use regular expression to match request path
+        
+        //anyRequest().   
+        //authenticated().
+        //permitAll().
+        //denyAll().
+        //hasAnyAuthority("ROLE_SOMETHING", "ROLE_SOMETHING_ELSE").
+        access("hasRole(ROLE_SOMETHING)").
+        //anonymous().
         and().
         httpBasic().and().
         sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
